@@ -3,7 +3,7 @@ var Q      = require('q');
 
 var Parser  = require('../../lib/parser');
 
-var validString = '';
+var validString = '1,2,3';
 var validRadix  = 10;
 
 describe('lib/parser', function() {
@@ -11,20 +11,21 @@ describe('lib/parser', function() {
   var subject;
 
   beforeEach(function () {
-    parser = new Parser();
+    parser = new Parser(validString, validRadix);
   });
 
   describe('validateInput', function() {
     beforeEach(function () {
       subject = parser.validateInput;
     });
+
     it('accepts a string and radix as parameters', function() {
-      return subject(validString, validRadix).then(function(){
+      return subject.call(parser).then(function(){
         expect(true).to.be.ok;
       });
     });
 
-    it('errors if not passed a string', function() {
+    it('errors if input is not a string', function() {
       var invalid = [
         undefined,
         null,
@@ -33,7 +34,8 @@ describe('lib/parser', function() {
       ];
       return invalid.reduce(function (promise, input) {
         return promise.then(function () {
-          return subject(input, validRadix).then(
+          parser.input = input;
+          return subject.call(parser).then(
             function success() {
               expect(true).to.be.false; // should never get here
             },
@@ -45,7 +47,7 @@ describe('lib/parser', function() {
       }, Q.resolve());
     });
 
-    it('errors if not passed a non-integer radix', function() {
+    it('errors if radix is not an integer', function() {
       var invalid = [
         'string',
         [],
@@ -53,7 +55,8 @@ describe('lib/parser', function() {
       ];
       return invalid.reduce(function (promise, radix) {
         return promise.then(function () {
-          return subject(validString, radix).then(
+          parser.radix = radix;
+          return subject.call(parser).then(
             function success() {
               expect(true).to.be.false; // should never get here
             },

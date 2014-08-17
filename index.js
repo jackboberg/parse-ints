@@ -21,11 +21,9 @@ module.exports = function parseInts(string, radix, fn) {
   }
   radix = radix || 10;
 
-  var parser = new Parser();
-  return parser.validateInput(string, radix)
-    .then(function () {
-      defered.resolve([]);
-      return defered.promise.nodeify(fn);
-    })
-    ;
+  var parser = new Parser(string, radix);
+  parser.getIntegers()
+    .then(defered.resolve, defered.reject);
+
+  return defered.promise.nodeify(fn);
 };
