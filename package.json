@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/jackboberg/parse-ints/issues"
   },
-  "homepage": "https://github.com/jackboberg/parse-ints"
+  "homepage": "https://github.com/jackboberg/parse-ints",
+  "devDependencies": {
+    "jshint": "~2.5.3"
+  }
 }
