@@ -69,9 +69,9 @@ describe('lib/parser', function() {
     });
   });
 
-  describe('getStrings', function() {
+  describe('getSubStrings', function() {
     beforeEach(function () {
-      subject = parser.getStrings;
+      subject = parser.getSubStrings;
     });
 
     it('gets substrings', function () {
@@ -87,5 +87,43 @@ describe('lib/parser', function() {
       });
     });
   });
-});
 
+  describe('parseRange', function() {
+    beforeEach(function () {
+      subject = parser.parseRange;
+    });
+
+    it('includes the limiting integers', function () {
+      var input = '1-2';
+      return subject.call(parser, input).then(function () {
+        expect(parser.integers).to.include.members([1,2]);
+      });
+    });
+
+    it('includes the internal integers', function () {
+      var input = '1-4';
+      return subject.call(parser, input).then(function () {
+        expect(parser.integers).to.include.members([2,3]);
+      });
+    });
+
+    it('does not include the external integers', function () {
+      var input = '2-4';
+      return subject.call(parser, input).then(function () {
+        expect(parser.integers).to.not.include.members([1,5]);
+      });
+    });
+
+    it('errors if range contains more than 2 numbers', function () {
+      var input = '2-4-6';
+      return subject.call(parser, input).then(
+        function success() {
+          expect(true).to.be.false; // should never get here
+        },
+        function fail(error) {
+          expect(error).to.be.instanceof(Error);
+        }
+      );
+    });
+  });
+});
