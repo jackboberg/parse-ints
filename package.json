@@ -1,7 +1,7 @@
 {
   "name": "parse-ints",
   "version": "0.0.0",
-  "description": "Parse integers from more complicated strings",
+  "description": "Parse integers from comma separated string, including ranges.",
   "main": "index.js",
   "scripts": {
     "pretest": "npm run jshint",
