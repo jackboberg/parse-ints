@@ -1,25 +1,29 @@
 var Q = require('q');
 
+var Parser = require('./lib/parser');
+
 /**
  * parseInts
  *
  * Parse integers from more complicated strings
  *
  * @param   {string}    string    input string
- * @param   {integer}   radix     radix of input string
+ * @param   {integer}   radix     (optional) radix of input string, default: 10
  * @param   {function}  fn        (optional) callback
  * @returns {array}               promise for array of integers
  */
 module.exports = function parseInts(string, radix, fn) {
   var defered = Q.defer();
 
-  if (typeof string !== 'string') {
-    defered.reject(new Error('input must be a string'));
+  if (fn === undefined && typeof radix === 'function') {
+    fn = radix;
+    radix = undefined;
   }
-  if ( ! parseInt(radix)) {
-    defered.reject(new Error('radix must be a integer'));
-  }
+  radix = radix || 10;
 
-  defered.resolve([]);
+  var parser = new Parser(string, radix);
+  parser.getIntegers()
+    .then(defered.resolve, defered.reject);
+
   return defered.promise.nodeify(fn);
 };
