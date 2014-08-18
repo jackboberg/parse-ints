@@ -68,5 +68,24 @@ describe('lib/parser', function() {
       }, Q.resolve());
     });
   });
+
+  describe('getStrings', function() {
+    beforeEach(function () {
+      subject = parser.getStrings;
+    });
+
+    it('gets substrings', function () {
+      return subject.call(parser).then(function (result) {
+        expect(result).to.eql(['1','2','3']);
+      });
+    });
+
+    it('strips whitespace', function () {
+      parser.input = '1, 2 , 4 -6';
+      return subject.call(parser).then(function (result) {
+        expect(result).to.eql(['1','2','4-6']);
+      });
+    });
+  });
 });
 
