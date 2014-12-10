@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "pretest": "npm run jshint",
-    "test": "mocha",
+    "test": "tape test/**/*.test.js",
     "jshint": "jshint --exclude-path .gitignore ./"
   },
   "repository": {
