@@ -25,9 +25,7 @@
   },
   "homepage": "https://github.com/jackboberg/parse-ints",
   "devDependencies": {
-    "chai": "~1.9.1",
     "jshint": "~2.5.3",
-    "mocha": "~1.21.4",
     "tape": "~3.0.3"
   },
   "dependencies": {
