@@ -5,7 +5,7 @@ test('requires a string as the 1st parameter', function (t) {
   t.plan(2);
   var output;
 
-  output = parseInts('1');
+  output = parseInts('1', 10);
   t.same(output, [ 1 ]);
 
   t.throws(parseInts);
@@ -49,4 +49,15 @@ test('parses a comma separated string', function (t) {
 
   output = parseInts('101,1010,1111', 2);
   t.same(output, [ 5, 10, 15 ]);
+});
+
+test('parses a range', function (t) {
+  t.plan(2);
+  var output;
+
+  output = parseInts('1-3');
+  t.same(output, [ 1, 2, 3 ]);
+
+  output = parseInts('101-111', 2);
+  t.same(output, [ 5, 6, 7 ]);
 });

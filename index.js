@@ -3,23 +3,32 @@
  *
  * Parse integers from more complicated strings
  *
- * @param   {string}    string    input string
+ * @param   {string}    input     input string
  * @param   {integer}   radix     (optional) radix of input string, default: 10
  * @returns {array}               array of integers
  */
-module.exports = function parseInts(string, radix) {
+module.exports = function parseInts(input, radix) {
   var output = [];
-  var subStrings = [];
 
   // split input string on commas and strip whitespace
-  subStrings = string.split(',')
+  var subStrings = input.split(',')
     .map(function stripSpaces(string) {
       return string.replace(/\s/g,'');
     });
 
-  // parse sub-string
-  subStrings.forEach(function parseSubString(str) {
-    output.push(parseInt(str, radix));
+  // parse each sub-string
+  subStrings.forEach(function parseSubString(subString) {
+    // check for range
+    if (subString.indexOf('-') < 0) {
+      return output.push(parseInt(subString, radix));
+    }
+    // parse range
+    var rangeParts  = subString.split('-');
+    var start       = parseInt(rangeParts[0], radix);
+    var end         = parseInt(rangeParts[1], radix);
+    for (var i = start; i <= end; i++) {
+      output.push(i);
+    }
   });
 
   return output;
