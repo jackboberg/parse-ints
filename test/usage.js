@@ -1,11 +1,3 @@
-parse-ints
-==========
-
-Parse integers from comma separated string, including ranges.
-
-## Usage
-
-```javascript
 var test      = require('tape');
 var parseInts = require('parse-ints');
 
@@ -43,4 +35,3 @@ test('parses mixed strings', function (t) {
   ints = parseInts('101-111, 1010', 2);
   t.same(ints, [ 5, 6, 7, 10 ]);
 });
-```

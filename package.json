@@ -1,11 +1,11 @@
 {
   "name": "parse-ints",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Parse integers from comma separated string, including ranges.",
   "main": "index.js",
   "scripts": {
     "pretest": "npm run jshint",
-    "test": "mocha",
+    "test": "tape test/**/*.js",
     "jshint": "jshint --exclude-path .gitignore ./"
   },
   "repository": {
@@ -25,11 +25,7 @@
   },
   "homepage": "https://github.com/jackboberg/parse-ints",
   "devDependencies": {
-    "chai": "~1.9.1",
     "jshint": "~2.5.3",
-    "mocha": "~1.21.4"
-  },
-  "dependencies": {
-    "q": "~1.0.1"
+    "tape": "~3.0.3"
   }
 }
