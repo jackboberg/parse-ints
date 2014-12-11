@@ -1,6 +1,6 @@
 {
   "name": "parse-ints",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Parse integers from comma separated string, including ranges.",
   "main": "index.js",
   "scripts": {
