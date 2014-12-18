@@ -1,5 +1,5 @@
 var test      = require('tape');
-var parseInts = require('parse-ints');
+var parseInts = require('../');
 
 var ints;
 

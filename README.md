@@ -44,3 +44,9 @@ test('parses mixed strings', function (t) {
   t.same(ints, [ 5, 6, 7, 10 ]);
 });
 ```
+
+## Issues and Feature Requests
+
+For issues, please submit a pull request with a failing test. For new feature
+requests, please write a pending test. Tests should be included in
+`/test/issues.js`.
