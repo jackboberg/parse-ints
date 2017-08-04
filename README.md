@@ -1,6 +1,8 @@
 parse-ints
 ==========
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/jackboberg/parse-ints.svg)](https://greenkeeper.io/)
+
 Parse integers from comma separated string, including ranges.
 
 ## Usage
